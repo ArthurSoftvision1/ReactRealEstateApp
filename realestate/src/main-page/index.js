@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './main-page.css';
 import Header from './header';
 import FeaturedHouse from './featured-house';
+import HouseFilter from './house-filter';
 
 class App extends Component {
 
@@ -17,6 +18,7 @@ class App extends Component {
     .then(allHouses => {
       this.allHouses = allHouses;
       this.determineFeaturedHouse();
+      this.determineUniqueCountries();
     })
   }
 
@@ -28,11 +30,20 @@ class App extends Component {
     };
   }
 
+  determineUniqueCountries = () => {
+    const countries = this.allHouses
+      ? Array.from(new Set(this.allHouses.map(h => h.country)))
+      : [];
+    countries.unshift(null);
+    this.setState({ countries });
+  }   
+
   render() {
     return (
       <div className="container">
         <Header subtitle="Providing houses all over the world" />
-        <FeaturedHouse house={ this.state.featuredHouse } />
+        <HouseFilter countries={this.state.countries} />
+        <FeaturedHouse house={this.state.featuredHouse} />
       </div>
     )
   }
