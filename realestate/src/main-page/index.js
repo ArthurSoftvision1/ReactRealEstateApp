@@ -5,10 +5,7 @@ import Header from './header';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {};
 
   fetchHouses = () => {
     fetch('/houses.json')
