@@ -16,7 +16,7 @@ const AppPresentation = (props) => {
 
     return (
         <div className="container">
-            <Header />
+            <Header subtitle='Providing houses all over the world' />
             <HouseFilter countries={props.countries} filterHouses={props.filterHouses} />
             {activeComponent}
         </div>
